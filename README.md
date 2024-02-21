@@ -46,21 +46,21 @@ keeping a clean copy of the original version is a good plan.
 On the basis it is better to identify problems, and perhaps fix those, in advance of the actual install.  I don't
 suppose you will actually do this step, but I feel an obligation to at least *try* to persuade you.
 
-5) Run, NOT as sudo,
+4) Run, NOT as sudo,
    
   `[user]$ ./hybrid_full_install.sh [<arguments>]`
   
   with any of the following optional arguments:
   
-  * passed through to pamac install (and thus applying to all pamac packages) are any of
+  * passed through to pamac install (and thus applying to all pamac packages) are any of pamac's own install options:
     
   `--ignore --overwrite --download-only -w -d --dry-run --as-deps --as-explicit --upgrade --no-upgrade --no-confirm`
   
-  * special to github installs and with explanations below are
+  * special to github installs and with explanations further down in this document are
     
   `--git-dry-run --git-no-confirm --git-no-install --git-force-all --git-retain-source --git-nodate-ok--git-only`
   
-  Once you have carefully studied the transcript of the dry run in Step 3 (be honest) and are confident all will go
+  My suggestion is, after you have carefully studied the transcript of the dry run in Step 3 (be honest) and are confident all will go
   well, run
   
   `[user]$ ./hybrid_full_install.sh --no-confirm --git-no-confirm`
@@ -105,25 +105,20 @@ As a disclaimer: hf_git.sh can be used as a package-manager *emulator*, it is no
 The following optional arguments can be provided to hybrid_full_install.sh for the initial installation (from where they
 will be passed to hf_git.sh when the installer calls that), or directly to hf_git.sh when used as a standalone updater:
 
---git-dry-run | compare dates to see what would update, but do not git clone sources or build or install
-
---git-no-install | do everything - download and build (if not already up to date) - except for the very final step of
-                       (over)writing the built files into system folders
-                       (a temporary script will be created which you can run to do the last step if all went well)
-                       
---git-no-confirm  |  -> don't ask questions, just do it
-
---git-retain-source -> keep rather than delete the download and build directories
---git-force-all     -> force download and rebuild for all github packages regardless of existing timestamps
-                       (default is not to rebuild and reinstall if the existing install has timestamp later than github latest)
---git-nodate-ok     -> if a package is found to be already installed, but there is no github API commit datetime check available,
-                       assume it is up to date (default is to re-install it)
---git-only item1 item2 ...
-                    -> packages not mentioned in the list will be completely ignored. This option must be placed last, with
+| --git-dry-run | compare dates to see what would update, but do not git clone sources or build or install |
+| --git-no-install | do everything - download and build (if not already up to date) - except for the very final step of
+                       (over)writing the built files into system folders.  A temporary script will be created which you can run to do the last step if all went well |
+| --git-no-confirm  |  -> don't ask questions, just do it |
+| --git-retain-source | keep rather than delete the download and build directories |
+| --git-force-all   | force download and rebuild for all github packages regardless of existing timestamps
+                       (default is not to rebuild and reinstall if the existing install has timestamp later than github latest) |
+| --git-nodate-ok   |  if a package is found to be already installed, but there is no github API commit datetime check available,
+                       assume it is up to date (default is to re-install it) |
+| --git-only item1 item2 ... | packages not mentioned in the list will be completely ignored. This option must be placed last, with
                        everything following --git-only being read as a list of package names, separated by space.  For this
                        purpose, "package name" must match exactly the first argument to the relevant DIY_check_install() call
                        in hf_git.sh (including .so extension for plugins), eg
-                       `--git-only libvsrawsource.so libvsimagereader.so`
+                       `--git-only libvsrawsource.so libvsimagereader.so` |
 
 Footnote: although I describe all the source-code installs as "git", some of the source code packages are not actually found
 on github, but are found archived elsewhere.  That's to say, I have a rather loose definition of "git", should really
