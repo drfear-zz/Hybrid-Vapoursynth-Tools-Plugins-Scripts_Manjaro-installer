@@ -33,28 +33,38 @@ All the files in this package should be placed in the same directory (I would re
 a bunch of other files will be generated in this same place).  Then
 
 1) Check you are happy with the location for VS_CORE_SCRIPTS as set in hf_header.sh, line 26.  Some people would
-say you should really use /opt or /etc or at least something with /local in it for this kind of thing.  I say, it's
-*my* computer and I will do what I like.
+say you should really use /opt or /etc or at least something with /local in it for this kind of thing.
 
-2) Ensure that hybrid_full_install.sh and hf_git.sh are executable.  Also be sure to create a read-only backup of
+2) Ensure that hybrid_full_install.sh and hf_git.sh are executable.  Also be sure to retain a read-only backup of
 hf_pamac_list.txt. You will quite likely find yourself having to edit this file after hitting a broken package, so
 keeping a clean copy of the original version is a good plan.
 
 3) Run, NOT as sudo,
+
   `[user]$ ./hybrid_full_install.sh --no-confirm --dry-run --git-dry-run --git-no-confirm `
+  
 On the basis it is better to identify problems, and perhaps fix those, in advance of the actual install.  I don't
 suppose you will actually do this step, but I feel an obligation to at least *try* to persuade you.
 
-4) Run, NOT as sudo,
+5) Run, NOT as sudo,
+   
   `[user]$ ./hybrid_full_install.sh [<arguments>]`
+  
   with any of the following optional arguments:
+  
   * passed through to pamac install (and thus applying to all pamac packages) are any of
+    
   `--ignore --overwrite --download-only -w -d --dry-run --as-deps --as-explicit --upgrade --no-upgrade --no-confirm`
+  
   * special to github installs and with explanations below are
+    
   `--git-dry-run --git-no-confirm --git-no-install --git-force-all --git-retain-source --git-nodate-ok--git-only`
-  If you have carefully studied the transcript of the dry run in Step 3 (be honest) and are confident all will go
-  well, or are just foolhardy, or just don't really care, you might run
+  
+  Once you have carefully studied the transcript of the dry run in Step 3 (be honest) and are confident all will go
+  well, run
+  
   `[user]$ ./hybrid_full_install.sh --no-confirm --git-no-confirm`
+  
   and give it about 10 min or so while pamac prepares the transaction(s), then you will be prompted for sudo password.
   I wish that was the end of it, but unfortunately you will have to provide your sudo password *again* every 10 minutes
   or so (depending on your system settings for sudo timeout; in Manjaro this is configurable but tricky). At least
@@ -72,31 +82,35 @@ To build (2):
 ```
 You might therefore be very tempted to say N to the install - no, I don't want to downgrade!  BUT in fact, if you say
 yes, you will find that the version *actually* installed is the latest, eg here for lsmashsource you will end up with
-A.5b.10.g5bea7a5-1 installed even though it *says* it will install A.5b.0.gfb891d0-1.
-(Of course in this particular case I answer N anyway, because I know I already have the latest, and there's no point
+A.5b.10.g5bea7a5-1 installed even though it *says* it will install A.5b.0.gfb891d0-1.  (Of course in this particular case I answer N anyway, because I know I already have the latest, and there's no point
 in just replacing it with itself.)
 
 ## Maintenance
 Unlike in the Ubuntu Hybrid package, the code here compares source code date with the date of your current binary (if any), and
 will by default not perform an unnecessary re-install.  Thus this code comes pre-built as ideal for re-use after the
 initial installation to pick up source code updates, like a pseudo mini package manager.
+
 Well - that's not the case for the pamac installs, for which pamac will *itself* take charge of testing for packages being
 already present and up to date, and notifying if there are updates and then offering to install them (and/or or you can
 explicitly run `$pamac checkupdates -a --devel` from time to time).
+
 But for the github-based installs, the hf_git.sh script is designed to be capable of being run "standalone" (well,
 I say standalone, but actually it sources hf_header.sh, which needs to be in the same folder). In this use it will,
 like an original install, compare the latest github commit date with the date of the binary on your system, and will
 update/install on that basis.
+
 As a disclaimer: hf_git.sh can be used as a package-manager *emulator*, it is not a true package manager.
 
 ### hf_git.sh arguments
 The following optional arguments can be provided to hybrid_full_install.sh for the initial installation (from where they
 will be passed to hf_git.sh when the installer calls that), or directly to hf_git.sh when used as a standalone updater:
 
---git-dry-run       -> compare dates to see what would update, but do not git clone sources or build or install
---git-no-install    -> do everything - download and build (if not already up to date) - except for the very final step of
+--git-dry-run  compare dates to see what would update, but do not git clone sources or build or install
+
+--git-no-install  do everything - download and build (if not already up to date) - except for the very final step of
                        (over)writing the built files into system folders
                        (a temporary script will be created which you can run to do the last step if all went well)
+                       
 --git-no-confirm    -> don't ask questions, just do it
 --git-retain-source -> keep rather than delete the download and build directories
 --git-force-all     -> force download and rebuild for all github packages regardless of existing timestamps
