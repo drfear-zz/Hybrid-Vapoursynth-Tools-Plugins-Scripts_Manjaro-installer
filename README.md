@@ -109,17 +109,16 @@ will be passed to hf_git.sh when the installer calls that), or directly to hf_gi
 - `--git-no-install   ` do everything - download and build (if not already up to date) - except for the very final step of
                        (over)writing the built files into system folders.  A temporary script will be created which you can run to do the last step if all went well
 - `--git-no-confirm   `  don't ask questions, just do it
-- 
-| --git-retain-source | keep rather than delete the download and build directories |
-| --git-force-all   | force download and rebuild for all github packages regardless of existing timestamps
-                       (default is not to rebuild and reinstall if the existing install has timestamp later than github latest) |
-| --git-nodate-ok   |  if a package is found to be already installed, but there is no github API commit datetime check available,
-                       assume it is up to date (default is to re-install it) |
-| --git-only item1 item2 ... | packages not mentioned in the list will be completely ignored. This option must be placed last, with
+- `--git-retain-source   ` keep rather than delete the download and build directories
+- `--git-force-all   ` force download and rebuild for all github packages regardless of existing timestamps
+                       (default is not to rebuild and reinstall if the existing install has timestamp later than github latest)
+- `--git-nodate-ok   `  if a package is found to be already installed, but there is no github API commit datetime check available,
+                       assume it is up to date (default is to re-install it)
+- `--git-only item1 item2 ...   ` packages not mentioned in the list will be completely ignored. This option must be placed last, with
                        everything following --git-only being read as a list of package names, separated by space.  For this
                        purpose, "package name" must match exactly the first argument to the relevant DIY_check_install() call
                        in hf_git.sh (including .so extension for plugins), eg
-                       `--git-only libvsrawsource.so libvsimagereader.so` |
+                       `--git-only libvsrawsource.so libvsimagereader.so`
 
 Footnote: although I describe all the source-code installs as "git", some of the source code packages are not actually found
 on github, but are found archived elsewhere.  That's to say, I have a rather loose definition of "git", should really
@@ -141,6 +140,7 @@ What I *will* mention here that I think is not immediately obvious is that in th
 that seems likely to have no chance of a quick fix, you could write up your 'git clone build install' substitute as an
 extra "module" in a modified hf_git.sh for future reference and updating.  To this end I would for example start from a
 clone of the builder/DIY_check_install code block for libneo-fft3d.so (because that one is short and sweet) and I point out:
+
   * The meaning and usage of the arguments to the DIY_check_install call are quite straightforwardly self-documented in the
   source code for that function.
   * The "builder" function is everything you need to do after the git clone of the source is completed, apart from the actual
@@ -154,7 +154,7 @@ I'm afraid I cannot offer direct support in case of pamac install failures - ple
 maintainer or perhaps try forums.
 
 If one of my builder_DIY_check_install combos becomes broken or if you have a suggestion for an improvement or a new feature,
-please raise it as an issue on the github page.
+please raise it as an issue here.
 
 
 
