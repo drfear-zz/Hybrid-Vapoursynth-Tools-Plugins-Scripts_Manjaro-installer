@@ -105,13 +105,14 @@ As a disclaimer: hf_git.sh can be used as a package-manager *emulator*, it is no
 The following optional arguments can be provided to hybrid_full_install.sh for the initial installation (from where they
 will be passed to hf_git.sh when the installer calls that), or directly to hf_git.sh when used as a standalone updater:
 
---git-dry-run  compare dates to see what would update, but do not git clone sources or build or install
+--git-dry-run | compare dates to see what would update, but do not git clone sources or build or install
 
---git-no-install  do everything - download and build (if not already up to date) - except for the very final step of
+--git-no-install | do everything - download and build (if not already up to date) - except for the very final step of
                        (over)writing the built files into system folders
                        (a temporary script will be created which you can run to do the last step if all went well)
                        
---git-no-confirm    -> don't ask questions, just do it
+--git-no-confirm  |  -> don't ask questions, just do it
+
 --git-retain-source -> keep rather than delete the download and build directories
 --git-force-all     -> force download and rebuild for all github packages regardless of existing timestamps
                        (default is not to rebuild and reinstall if the existing install has timestamp later than github latest)
