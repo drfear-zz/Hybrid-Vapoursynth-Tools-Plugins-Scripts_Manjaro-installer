@@ -108,6 +108,7 @@ will be passed to hf_git.sh when the installer calls that), or directly to hf_gi
 | --git-dry-run | compare dates to see what would update, but do not git clone sources or build or install |
 | --git-no-install | do everything - download and build (if not already up to date) - except for the very final step of
                        (over)writing the built files into system folders.  A temporary script will be created which you can run to do the last step if all went well |
+                       
 | --git-no-confirm  |  -> don't ask questions, just do it |
 | --git-retain-source | keep rather than delete the download and build directories |
 | --git-force-all   | force download and rebuild for all github packages regardless of existing timestamps
