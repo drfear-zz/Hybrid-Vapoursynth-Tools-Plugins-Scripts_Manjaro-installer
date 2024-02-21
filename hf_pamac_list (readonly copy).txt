@@ -1,0 +1,143 @@
+##############################################################################################################
+# List of Manjaro/AUR packages needed for full install of Hybrid+Vapoursynth
+#
+# format rules for this file: one package per row. Comment lines must have # in column 1
+#
+##############################################################################################################
+
+
+##############################################################################################################
+# For Hybrid tools (ie programs called Tools in the GUI)
+##############################################################################################################
+
+# note that the first packages in this list are examples of packages that cover a good number of other packages
+# as dependencies, which will also be installed.
+# This is why you do not see in this list e.g. ffmpeg, which is 100% required by Hybrid, because it is installed by
+# myplayer (in the extraordinarily unlikely even you did not already have it).  And these dependent packages
+# may well themselves have sub-dependents, and so on.
+# I'm saying that the list here is tailored to ensure the needed final result, and you should be very careful
+# if you attempt to just pick and choose.
+
+
+hybrid-encoder
+vapoursynth
+# A final word about mplayer. Apart from needing this Manjaro package to ensure many other tools, you *must*
+# have mplayer, per se, as the tool mapped to Mplayer in the GUI tab.It is called explicitly within the Hybrid
+# code with arguments and output that are peculiar to mplayer, so no other player (I really wanted mpv) will
+# work - no videos will even load unless you set the link to mplayer.
+mmplayer
+encoder
+mkvtoolnix-cli
+divx265
+x265
+kvazaar
+mediainfo
+svt-hevc
+tsmuxer-git
+gpac
+delaycut
+sox
+neroaacenc-bin
+fdkaac
+vorbis-tools
+aften
+dcaenc
+opus-tools
+lsdvd
+flv-extract
+bdsup2subpp-git
+mp4fpsmod
+
+###############################################################################################
+# the "core" plugins
+###############################################################################################
+
+vapoursynth-plugin-addgrain-git
+vapoursynth-plugin-vsakarin-git
+vapoursynth-plugin-assrender-git
+vapoursynth-plugin-awarpsharp2-git
+vapoursynth-plugin-bestsource-git
+vapoursynth-plugin-bifrost-git
+vapoursynth-plugin-bilateral-git
+vapoursynth-plugin-bm3d-git
+vapoursynth-plugin-bwdif-git
+vapoursynth-plugin-cas-git
+vapoursynth-plugin-ccd-git
+vapoursynth-plugin-cnr2-git
+vapoursynth-plugin-ctmf-git
+vapoursynth-plugin-d2vsource-git
+vapoursynth-plugin-dctfilter-git
+vapoursynth-plugin-deblockpp7-git
+vapoursynth-plugin-deblock-git
+vapoursynth-plugin-decross-git
+vapoursynth-plugin-dedot-git
+vapoursynth-plugin-degrainmedian-git
+vapoursynth-plugin-depan-git
+vapoursynth-plugin-descale-git
+vapoursynth-plugin-dfttest-git
+vapoursynth-plugin-dotkill-git
+vapoursynth-plugin-dpid-git
+vapoursynth-plugin-edgefixer-git
+vapoursynth-plugin-eedi2-git
+vapoursynth-plugin-eedi3m-git
+vapoursynth-plugin-f3kdb-git
+vapoursynth-plugin-fft3dfilter-git
+vapoursynth-plugin-fixtelecinedfades-git
+vapoursynth-plugin-fluxsmooth-git
+vapoursynth-plugin-fmtconv-git
+vapoursynth-plugin-hqdn3d-git
+vapoursynth-plugin-imwri-git
+vapoursynth-plugin-it-git
+vapoursynth-plugin-knlmeanscl-git
+vapoursynth-plugin-lghost-git
+vapoursynth-plugin-minideen-git
+vapoursynth-plugin-misc-git
+vapoursynth-plugin-msmoosh-git
+vapoursynth-plugin-mvtools-git
+vapoursynth-plugin-neo_vague_denoiser-git
+vapoursynth-plugin-nnedi3cl-git
+vapoursynth-plugin-nnedi3-git
+vapoursynth-plugin-readmpls-git
+vapoursynth-plugin-reduceflicker-git
+vapoursynth-plugin-removegrain-git
+vapoursynth-plugin-retinex-git
+vapoursynth-plugin-rife-ncnn-vulkan-git
+vapoursynth-plugin-sangnommod-git
+vapoursynth-plugin-sangnom-git
+vapoursynth-plugin-smoothuv-git
+vapoursynth-plugin-ssiq-git
+vapoursynth-plugin-subtext-git
+vapoursynth-plugin-tcanny-git
+vapoursynth-plugin-tdeintmod-git
+vapoursynth-plugin-tedgemask-git
+vapoursynth-plugin-templinearapproximate-git
+vapoursynth-plugin-temporalmedian-git
+vapoursynth-plugin-temporalsoften2-git
+vapoursynth-plugin-temporalsoften-git
+vapoursynth-plugin-tivtc-git
+vapoursynth-plugin-tonemap-git
+vapoursynth-plugin-ttempsmooth-git
+vapoursynth-plugin-vfrtocfr-git
+vapoursynth-plugin-vivtc-git
+vapoursynth-plugin-lsmashsource-git
+vapoursynth-plugin-znedi3-git
+vapoursynth-plugin-yadifmod-git
+vapoursynth-plugin-svpflow
+# the ffms2-git package installs all of ffms2, with the vapoursynth plugin being simply a link
+# to /usr/lib/libffms2.so
+ffms2-git
+
+###############################################################################################
+# packages required by at least one of the github-based builds
+###############################################################################################
+
+# you could in theory remove these packages after using them for the Hybrid install, but I would
+# suggest you just keep them all, they are bound to be needed again some time. I've included
+# base-devel here just in case you are setting up in a brand new Manjaro install, you would most
+# likely not be reading this if you were not already very familiar with it
+
+base-devel
+yasm
+meson
+cmake
+zig-dev-bin
